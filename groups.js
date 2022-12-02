@@ -43,22 +43,22 @@ const client = new Client({
 client.initialize();
 
 io.on('connection', function(socket) {
-  socket.emit('message', '© BOT-ZDG - Iniciado');
+  socket.emit('message', '- Iniciado');
   socket.emit('qr', './icon.svg');
 
 client.on('qr', (qr) => {
     console.log('QR RECEIVED', qr);
     qrcode.toDataURL(qr, (err, url) => {
       socket.emit('qr', url);
-      socket.emit('message', '© BOT-ZDG QRCode recebido, aponte a câmera  seu celular!');
+      socket.emit('message', 'QRCode recebido, aponte a câmera  seu celular!');
     });
 });
 
 client.on('ready', async () => {
-    socket.emit('ready', '© BOT-ZDG Dispositivo pronto!');
-    socket.emit('message', '© BOT-ZDG Dispositivo pronto!');
+    socket.emit('ready', 'Dispositivo pronto!');
+    socket.emit('message', 'Dispositivo pronto!');
     socket.emit('qr', './check.svg')	
-    console.log('© BOT-ZDG Dispositivo pronto');
+    console.log('Dispositivo pronto');
     //const chat = await client.getChatById('55119887623431633745589@g.us')
     //console.log(chat)
     const groups = await client.getChats()
@@ -89,23 +89,23 @@ client.on('ready', async () => {
 // });
 
 client.on('authenticated', () => {
-    socket.emit('authenticated', '© BOT-ZDG Autenticado!');
-    socket.emit('message', '© BOT-ZDG Autenticado!');
-    console.log('© BOT-ZDG Autenticado');
+    socket.emit('authenticated', 'Autenticado!');
+    socket.emit('message', 'Autenticado!');
+    console.log('Autenticado');
 });
 
 client.on('auth_failure', function() {
-    socket.emit('message', '© BOT-ZDG Falha na autenticação, reiniciando...');
-    console.error('© BOT-ZDG Falha na autenticação');
+    socket.emit('message', 'Falha na autenticação, reiniciando...');
+    console.error('Falha na autenticação');
 });
 
 client.on('change_state', state => {
-  console.log('© BOT-ZDG Status de conexão: ', state );
+  console.log('Status de conexão: ', state );
 });
 
 client.on('disconnected', (reason) => {
-  socket.emit('message', '© BOT-ZDG Cliente desconectado!');
-  console.log('© BOT-ZDG Cliente desconectado', reason);
+  socket.emit('message', 'Cliente desconectado!');
+  console.log('Cliente desconectado', reason);
   client.initialize();
 });
 });
@@ -306,13 +306,13 @@ app.post('/add-user', [
     await chat.addParticipants([numberZDG]).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Usuário adicionado',
+      message: 'Usuário adicionado',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Usuário não adicionado',
+      message: 'Usuário não adicionado',
       response: err.text
     });
     });
@@ -322,13 +322,13 @@ app.post('/add-user', [
     await chat.addParticipants([numberZDG]).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Mensagem enviada',
+      message: 'Mensagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
+      message: 'Mensagem não enviada',
       response: err.text
     });
     });
@@ -338,13 +338,13 @@ app.post('/add-user', [
     await chat.addParticipants([numberZDG]).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Mensagem enviada',
+      message: 'Mensagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
+      message: 'Mensagem não enviada',
       response: err.text
     });
     });
@@ -353,13 +353,13 @@ app.post('/add-user', [
   // await chat.addParticipants([user]).then(response => {
   //   res.status(200).json({
   //     status: true,
-  //     message: 'BOT-ZDG Usuário adicionado',
+  //     message: 'Usuário adicionado',
   //     response: response
   //   });
   //   }).catch(err => {
   //   res.status(500).json({
   //     status: false,
-  //     message: 'BOT-ZDG Usuário removido',
+  //     message: 'Usuário removido',
   //     response: err.text
   //   });
   //   });
@@ -397,13 +397,13 @@ app.post('/remove-user', [
     await chat.removeParticipants([numberZDG]).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Usuário removido',
+      message: 'Usuário removido',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Usuário não removido',
+      message: 'Usuário não removido',
       response: err.text
     });
     });
@@ -413,13 +413,13 @@ app.post('/remove-user', [
     await chat.removeParticipants([numberZDG]).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Mensagem enviada',
+      message: 'Mensagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
+      message: 'Mensagem não enviada',
       response: err.text
     });
     });
@@ -429,13 +429,13 @@ app.post('/remove-user', [
     await chat.removeParticipants([numberZDG]).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Mensagem enviada',
+      message: 'Mensagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
+      message: 'Mensagem não enviada',
       response: err.text
     });
     });
@@ -444,13 +444,13 @@ app.post('/remove-user', [
   // await chat.removeParticipants([user]).then(response => {
   //   res.status(200).json({
   //     status: true,
-  //     message: 'BOT-ZDG Usuário adicionado',
+  //     message: 'Usuário adicionado',
   //     response: response
   //   });
   //   }).catch(err => {
   //   res.status(500).json({
   //     status: false,
-  //     message: 'BOT-ZDG Usuário removido',
+  //     message: 'Usuário removido',
   //     response: err.text
   //   });
   //   });
@@ -488,13 +488,13 @@ app.post('/add-admin', [
     await chat.promoteParticipants([numberZDG]).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Admin adicionado',
+      message: 'Admin adicionado',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Admin não adicionado',
+      message: 'Admin não adicionado',
       response: err.text
     });
     });
@@ -504,13 +504,13 @@ app.post('/add-admin', [
     await chat.promoteParticipants([numberZDG]).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Mensagem enviada',
+      message: 'Mensagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
+      message: 'Mensagem não enviada',
       response: err.text
     });
     });
@@ -520,13 +520,13 @@ app.post('/add-admin', [
     await chat.promoteParticipants([numberZDG]).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Mensagem enviada',
+      message: 'Mensagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
+      message: 'Mensagem não enviada',
       response: err.text
     });
     });
@@ -535,13 +535,13 @@ app.post('/add-admin', [
   // await chat.promoteParticipants([user]).then(response => {
   //   res.status(200).json({
   //     status: true,
-  //     message: 'BOT-ZDG Usuário adicionado',
+  //     message: 'Usuário adicionado',
   //     response: response
   //   });
   //   }).catch(err => {
   //   res.status(500).json({
   //     status: false,
-  //     message: 'BOT-ZDG Usuário removido',
+  //     message: 'Usuário removido',
   //     response: err.text
   //   });
   //   });
@@ -579,13 +579,13 @@ app.post('/demote-admin', [
     await chat.demoteParticipants([numberZDG]).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Admin removido',
+      message: 'Admin removido',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Admin não removido',
+      message: 'Admin não removido',
       response: err.text
     });
     });
@@ -595,13 +595,13 @@ app.post('/demote-admin', [
     await chat.demoteParticipants([numberZDG]).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Mensagem enviada',
+      message: 'Mensagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
+      message: 'Mensagem não enviada',
       response: err.text
     });
     });
@@ -611,13 +611,13 @@ app.post('/demote-admin', [
     await chat.demoteParticipants([numberZDG]).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Mensagem enviada',
+      message: 'Mensagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
+      message: 'Mensagem não enviada',
       response: err.text
     });
     });
@@ -626,13 +626,13 @@ app.post('/demote-admin', [
   // await chat.demoteParticipants([user]).then(response => {
   //   res.status(200).json({
   //     status: true,
-  //     message: 'BOT-ZDG Usuário adicionado',
+  //     message: 'Usuário adicionado',
   //     response: response
   //   });
   //   }).catch(err => {
   //   res.status(500).json({
   //     status: false,
-  //     message: 'BOT-ZDG Usuário removido',
+  //     message: 'Usuário removido',
   //     response: err.text
   //   });
   //   });
@@ -642,7 +642,7 @@ app.post('/demote-admin', [
 
 client.on('group_join', async () => {
   const groups = await client.getChats()
-  console.log('-----------------------------\nBOT-ZDG Grupos atualizados:\n-----------------------------') 
+  console.log('-----------------------------\nGrupos atualizados:\n-----------------------------') 
   for (const group of groups){
     if(group.id.server.includes('g.us')){
       console.log('Nome: ' + group.name + ' - ID: ' + group.id._serialized.replace(/\D/g,'')) 
@@ -652,7 +652,7 @@ client.on('group_join', async () => {
 
 client.on('group_leave', async () => {
   const groups = await client.getChats()
-  console.log('-----------------------------\nBOT-ZDG Grupos atualizados:\n-----------------------------') 
+  console.log('-----------------------------\nGrupos atualizados:\n-----------------------------') 
   for (const group of groups){
     if(group.id.server.includes('g.us')){
       console.log('Nome: ' + group.name + ' - ID: ' + group.id._serialized.replace(/\D/g,'')) 
